@@ -1,16 +1,21 @@
 import { motion } from 'motion/react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../auth/AuthContext';
 
 export default function SplashScreen() {
   const navigate = useNavigate();
+  const { isLoading, user } = useAuth();
 
   useEffect(() => {
+    if (isLoading) return;
+
     const timer = setTimeout(() => {
-      navigate('/login');
+      navigate(user ? '/home' : '/login');
     }, 2000);
+
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [isLoading, navigate, user]);
 
   return (
     <div className="size-full flex flex-col items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#1A1A2E' }}>

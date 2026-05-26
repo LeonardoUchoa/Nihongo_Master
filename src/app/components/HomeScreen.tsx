@@ -1,9 +1,16 @@
 import { useNavigate } from 'react-router';
-import { Home, BookOpen, RefreshCw, TrendingUp, User } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 import BottomNav from './BottomNav';
+import { useAuth } from '../auth/AuthContext';
 
 export default function HomeScreen() {
   const navigate = useNavigate();
+  const { profile, user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/login', { replace: true });
+  };
 
   const reviewCards = [
     {
@@ -42,7 +49,12 @@ export default function HomeScreen() {
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-400" />
             <div className="flex-1">
               <h2 className="text-xl" style={{ color: '#1A1A2E' }}>Olá, Estudante!</h2>
+              {user?.email && <p className="text-xs text-gray-500 truncate">{user.email}</p>}
+              {profile?.level && <p className="text-xs text-gray-500">Nível: {profile.level}</p>}
             </div>
+            <button onClick={handleSignOut} className="p-2 text-gray-400" aria-label="Sair">
+              <LogOut size={20} />
+            </button>
             <div className="flex items-center gap-1 text-lg">
               <span>🔥</span>
               <span style={{ color: '#E63946' }}>7 dias</span>

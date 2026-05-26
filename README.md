@@ -1,11 +1,32 @@
+# Nihongo Master
 
-  # Japanese Language Learning App
+Japanese language learning app built with React, Vite, Tailwind CSS, and Supabase.
 
-  This is a code bundle for Japanese Language Learning App. The original project is available at https://www.figma.com/design/z8I4WN22jw47tIlJja0kt0/Japanese-Language-Learning-App.
+## Setup
 
-  ## Running the code
+Install dependencies:
 
-  Run `npm i` to install the dependencies.
+```bash
+npm install
+```
 
-  Run `npm run dev` to start the development server.
-  
+Create a `.env` file based on `.env.example`:
+
+```env
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_ANON_KEY=your-public-anon-key
+```
+
+Run the SQL in `supabase/schema.sql` in the Supabase SQL Editor.
+
+## Development
+
+```bash
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
